@@ -1,162 +1,505 @@
+
 <!DOCTYPE html>
-<!-- oss-template-2026:placeholder （この目印で，scripts/check.sh が「準備中」のページかどうかを見分けます） -->
-<!--
-  テンプレートの「準備中」のページです．
-  このページが https://ユーザー名.github.io/ に表示されたら，GitHub Pages の設定は成功です．
-  第7回の実習4で，このファイルを第6回で作った index.html に置きかえます．
--->
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>準備中</title>
-  <style>
-    /* ===== 色の設定 ===== */
-    :root {
-      --main-color: #2e7d32;  /* メインの色（見出し・番号） */
-      --bg-color: #f5f8f5;    /* ページの背景の色 */
-      --card-color: #ffffff;  /* カードの背景の色 */
-      --text-color: #222222;  /* 文字の色 */
-      --sub-color: #666666;   /* 補足の文字の色 */
-      --line-color: #dfe6df;  /* 区切り線の色 */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shunsuke | Portfolio</title>
 
-    /* パソコンやスマートフォンがダークモードのときの色 */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --main-color: #81c784;
-        --bg-color: #121512;
-        --card-color: #1e231e;
-        --text-color: #e8ece8;
-        --sub-color: #a0a8a0;
-        --line-color: #2f362f;
-      }
-    }
+    <style>
+        /* ===== 全体の基本設定 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ページ全体：カードを画面のまんなかに置く */
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-      box-sizing: border-box;
-      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-      line-height: 1.8;
-      color: var(--text-color);
-      background: var(--bg-color);
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* まんなかのカード */
-    main {
-      width: 100%;
-      max-width: 600px;
-      padding: 32px 28px;
-      background: var(--card-color);
-      border-top: 6px solid var(--main-color);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    }
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            background-color: #0d111b;
+            color: #e5eaf2;
+            line-height: 1.9;
+        }
 
-    h1 {
-      margin: 0 0 4px;
-      font-size: clamp(1.3rem, 6vw, 1.6rem);  /* スマートフォンでは少し小さくする */
-      line-height: 1.4;
-      color: var(--main-color);
-    }
+        /* ===== 共通レイアウト ===== */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-    h2 {
-      margin: 28px 0 8px;
-      padding-bottom: 4px;
-      font-size: 1.05rem;
-      border-bottom: 1px solid var(--line-color);
-    }
+        section {
+            padding: 70px 0;
+        }
 
-    /* 「設定は成功」のバッジ */
-    .badge {
-      display: inline-block;
-      margin: 8px 0 0;
-      padding: 2px 12px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: var(--card-color);
-      background: var(--main-color);
-      border-radius: 999px;
-    }
+        .section-title {
+            font-size: 1.7rem;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #294b7a;
+        }
 
-    /* 「次にやること」の番号つきリスト */
-    ol {
-      margin: 0;
-      padding-left: 1.4em;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    li::marker {
-      font-weight: bold;
-      color: var(--main-color);
-    }
+        .section-title span {
+            color: #5b9cf0;
+            margin-right: 12px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
 
-    /* コマンドの見た目 */
-    code {
-      padding: 1px 6px;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 0.88em;
-      background: var(--bg-color);
-      border-radius: 4px;
-      white-space: nowrap;  /* コマンドの途中で折り返さない */
-    }
+        /* ===== ヘッダー・ナビゲーション ===== */
+        header {
+            background-color: #111827;
+            border-bottom: 1px solid #29364a;
+        }
 
-    /* 補足の小さな文字 */
-    .sub {
-      font-size: 0.9rem;
-      color: var(--sub-color);
-    }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            min-height: 75px;
+        }
 
-    /* いちばん下の小さな文字 */
-    footer {
-      margin-top: 28px;
-      padding-top: 12px;
-      font-size: 0.8rem;
-      color: var(--sub-color);
-      border-top: 1px solid var(--line-color);
-    }
-    a {
-      color: var(--main-color);
-    }
-  </style>
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #5b9cf0;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #c5cfdf;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            color: #69a9ff;
+        }
+
+        /* ===== 最初に表示される自己紹介エリア ===== */
+        .hero {
+            padding: 110px 0;
+            background: linear-gradient(
+                135deg,
+                #111827 0%,
+                #142b4b 100%
+            );
+            border-bottom: 1px solid #29364a;
+        }
+
+        .hero-label {
+            color: #76adf7;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 9vw, 5.5rem);
+            color: #ffffff;
+            letter-spacing: 3px;
+            line-height: 1.3;
+        }
+
+        .hero h1 span {
+            color: #69a9ff;
+        }
+
+        .hero-subtitle {
+            color: #a6b9d1;
+            font-size: 1.1rem;
+            margin-top: 16px;
+        }
+
+        .hero-description {
+            max-width: 680px;
+            margin-top: 36px;
+            font-size: 1rem;
+            color: #d7e0ed;
+        }
+
+        /* ===== 情報を表示するカード ===== */
+        .card {
+            background-color: #161f2e;
+            border: 1px solid #2a3950;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .card h3 {
+            color: #80b5fa;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        /* ===== 基本情報 ===== */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .profile-item .item-label {
+            font-size: 0.85rem;
+            color: #94a7c0;
+            margin-bottom: 8px;
+        }
+
+        .profile-item .item-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* ===== 趣味のカード一覧 ===== */
+        .hobby-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .hobby-card {
+            background-color: #161f2e;
+            border: 1px solid #2a3950;
+            border-radius: 12px;
+            padding: 30px 15px;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            border-color: #5b9cf0;
+        }
+
+        .hobby-number {
+            display: block;
+            color: #609ce8;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* ===== プログラミング経験 ===== */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            background-color: #161f2e;
+            border: 1px solid #2a3950;
+            border-left: 4px solid #5b9cf0;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .skill-card p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* ===== この授業で学びたいこと ===== */
+        .learning-box {
+            background-color: #13233a;
+            border-left: 4px solid #69a9ff;
+            border-radius: 8px;
+            padding: 32px;
+        }
+
+        .learning-box h3 {
+            color: #80b5fa;
+            margin-bottom: 12px;
+        }
+
+        /* ===== ひとこと・稲刈りの話 ===== */
+        .message-card {
+            background-color: #161f2e;
+            border: 1px solid #2a3950;
+            border-radius: 12px;
+            padding: 35px;
+        }
+
+        .message-card h3 {
+            color: #80b5fa;
+            margin-bottom: 16px;
+        }
+
+        /* ===== フッター ===== */
+        footer {
+            background-color: #0a0f18;
+            border-top: 1px solid #29364a;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: #8c9bb0;
+            font-size: 0.85rem;
+        }
+
+        /* ===== スマートフォン向けの調整 ===== */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                justify-content: center;
+                padding: 20px 0;
+                gap: 12px;
+            }
+
+            nav ul {
+                justify-content: center;
+                gap: 12px 18px;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 75px 0;
+            }
+
+            .hero-description {
+                margin-top: 25px;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hobby-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .skill-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card,
+            .learning-box,
+            .message-card {
+                padding: 24px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* ===== 小さなスマートフォン向けの調整 ===== */
+        @media (max-width: 400px) {
+            .hobby-grid {
+                gap: 10px;
+            }
+
+            .hobby-card {
+                padding: 20px 10px;
+                font-size: 0.9rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <main>
-    <h1>このサイトは準備中です</h1>
-    <p class="badge">GitHub Pages の設定 OK</p>
-    <p>このページが表示されていれば，あなたのリポジトリは正しく公開されています．
-      あとは，このページを自分のサイトに置きかえるだけです．</p>
 
-    <h2>次にやること</h2>
-    <ol>
-      <li>このリポジトリを，SSHのURLで <code>git clone</code> する</li>
-      <li><code>index.html</code> を，第6回で作ったサイトに置きかえる</li>
-      <li><code>bash scripts/check.sh</code> で，公開前のチェックをする</li>
-      <li><code>git add</code> → <code>git commit</code> → <code>git push origin main</code> する</li>
-      <li>数分待ってから，このページを再読み込みする</li>
-    </ol>
-    <p class="sub">再読み込みしても変わらないときは，強制再読み込み（Windows：Ctrl + F5，Mac：Command + Shift + R）を試しましょう．</p>
+    <!-- ===== ヘッダー：サイト名と各項目へのリンク ===== -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">Shunsuke<span>.</span></div>
 
-    <h2>公開する前に</h2>
-    <ul>
-      <li>本名のフルネーム・学籍番号・住所・電話番号・メールアドレスが入っていないか</li>
-      <li>自己紹介に書いていないことを，AIが付け足していないか</li>
-    </ul>
-    <p class="sub">このリポジトリは Public です．サイトだけでなく，ファイルの中身やコミットの履歴も，誰でも見ることができます．</p>
+            <nav aria-label="メインナビゲーション">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#hobbies">Hobbies</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#learning">Learning</a></li>
+                    <li><a href="#message">Message</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <main>
+
+        <!-- ===== メインビジュアル：名前とキャッチコピー ===== -->
+        <section class="hero">
+            <div class="container">
+                <p class="hero-label">WELCOME TO MY PORTFOLIO</p>
+
+                <h1>Hi, I'm<br><span>Shunsuke.</span></h1>
+
+                <p class="hero-subtitle">
+                    工学部 情報工学科 / 大学3年生
+                </p>
+
+                <p class="hero-description">
+                    大学の寮で生活しています。<br>
+                    教職も履修しているので、3年生になっても
+                    授業が多くて大変です。
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 基本情報：名前・学年・所属 ===== -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">
+                    <span>01</span>About Me
+                </h2>
+
+                <div class="profile-grid">
+                    <div class="card profile-item">
+                        <p class="item-label">NAME / 名前</p>
+                        <p class="item-value">Shunsuke</p>
+                    </div>
+
+                    <div class="card profile-item">
+                        <p class="item-label">GRADE / 学年</p>
+                        <p class="item-value">大学3年生</p>
+                    </div>
+
+                    <div class="card profile-item">
+                        <p class="item-label">DEPARTMENT / 所属</p>
+                        <p class="item-value">工学部情報工学科</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 趣味・好きなこと ===== -->
+        <section id="hobbies">
+            <div class="container">
+                <h2 class="section-title">
+                    <span>02</span>Hobbies
+                </h2>
+
+                <div class="hobby-grid">
+                    <div class="hobby-card">
+                        <span class="hobby-number">01</span>
+                        読書
+                    </div>
+
+                    <div class="hobby-card">
+                        <span class="hobby-number">02</span>
+                        ゲーム
+                    </div>
+
+                    <div class="hobby-card">
+                        <span class="hobby-number">03</span>
+                        美味しいものを食べる
+                    </div>
+
+                    <div class="hobby-card">
+                        <span class="hobby-number">04</span>
+                        睡眠
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== プログラミング経験：使用経験のある言語 ===== -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">
+                    <span>03</span>Programming
+                </h2>
+
+                <div class="skill-grid">
+                    <div class="skill-card">
+                        <p>Java</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <p>JavaScript</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <p>Python</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 授業で学びたいこと ===== -->
+        <section id="learning">
+            <div class="container">
+                <h2 class="section-title">
+                    <span>04</span>Learning Goals
+                </h2>
+
+                <div class="learning-box">
+                    <h3>この授業で学びたいこと</h3>
+                    <p>
+                        OSSの使い方とその上での注意点について
+                        学びたいと考えています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ひとこと：稲刈りについてのエピソード ===== -->
+        <section id="message">
+            <div class="container">
+                <h2 class="section-title">
+                    <span>05</span>Message
+                </h2>
+
+                <div class="message-card">
+                    <h3>お米作りと稲刈り</h3>
+
+                    <p>
+                        お米を育てることはとても大変なことです。
+                        今年は台風や天気が良くなかったことで、
+                        去年より不作ではありましたが、
+                        私も稲刈りを手伝いました。
+                    </p>
+
+                    <p>
+                        来年もやると思うので、
+                        次回はもっと手伝っていきたいです。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== フッター：サイトの最下部 ===== -->
     <footer>
-      拓殖大学工学部『オープンソースソフトウェア』2026年度<br>
-      <a href="https://github.com/tomohitoy/oss-practice-2026/blob/main-07/chap07/README.md">第7回の資料</a>
-      ・
-      <a href="https://github.com/tomohitoy/oss-template-2026">テンプレート（tomohitoy/oss-template-2026）</a>
+        <div class="container">
+            <p>Shunsuke | Portfolio</p>
+        </div>
     </footer>
-  </main>
+
 </body>
 </html>
